@@ -1,0 +1,110 @@
+/**
+ * importer.less
+ *
+ * By default, new Sails projects are configured to compile this file
+ * from LESS to CSS.  Unlike CSS files, LESS files are not compiled and
+ * included automatically unless they are imported below.
+ *
+ * The LESS files imported below are compiled and included in the order
+ * they are listed.  Mixins, variables, etc. should be imported first
+ * so that they can be accessed by subsequent LESS stylesheets.
+ *
+ * (Just like the rest of the asset pipeline bundled in Sails, you can
+ * always omit, customize, or replace this behavior with SASS, SCSS,
+ * or any other Grunt tasks you like.)
+ */
+@font-face {
+  font-family: Garamond-Regular;
+  src: url('../fonts/compiled/AGaramondPro-Regular.woff2') format('woff2'), url('../fonts/compiled/AGaramondPro-Regular.woff') format('woff'), url('../fonts/compiled/AGaramondPro-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: Garamond-Italic;
+  src: url('../fonts/compiled/AGaramondPro-Italic.woff2') format('woff2'), url('../fonts/compiled/AGaramondPro-Italic.woff') format('woff'), url('../fonts/compiled/AGaramondPro-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: Gotham-Book;
+  src: url('../fonts/compiled/Gotham-Book.woff2') format('woff2'), url('../fonts/compiled/Gotham-Book.woff') format('woff'), url('../fonts/compiled/Gotham-Book.ttf') format('truetype');
+}
+@font-face {
+  font-family: Gotham-Medium;
+  src: url('../fonts/compiled/Gotham-Medium.woff2') format('woff2'), url('../fonts/compiled/Gotham-Medium.woff') format('woff'), url('../fonts/compiled/Gotham-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: Gotham-Bold;
+  src: url('../fonts/compiled/Gotham-Bold.woff2') format('woff2'), url('../fonts/compiled/Gotham-Bold.woff') format('woff'), url('../fonts/compiled/Gotham-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: HelveticaNeue-MediumCond;
+  src: url('../fonts/compiled/HelveticaNeue-MediumCond.woff2') format('woff2'), url('../fonts/compiled/HelveticaNeue-MediumCond.woff') format('woff'), url('../fonts/compiled/HelveticaNeue-MediumCond.ttf') format('truetype');
+}
+body {
+  background: black;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+html {
+  border: none;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+canvas {
+  position: absolute;
+  display: block;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: black;
+  width: 100%;
+  height: 100%;
+}
+.navigation {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 60px;
+}
+.navigation img {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  cursor: pointer;
+  height: 45px;
+  width: auto;
+}
+.navigation a {
+  position: relative;
+  display: block;
+  float: right;
+  color: white;
+  text-decoration: none;
+  padding-top: 44px;
+  padding-right: 15px;
+  font-family: "Gotham-Book", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 15px;
+}
+.navigation a.morepadding {
+  padding-right: 25px;
+}
+.navigation a.dark {
+  color: black;
+}
+.navigation img,
+.navigation a {
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+  opacity: 0;
+  visibility: hidden;
+}
+.navigation img.visible,
+.navigation a.visible {
+  opacity: 1.0;
+  visibility: visible;
+}
