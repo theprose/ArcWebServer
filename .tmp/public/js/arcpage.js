@@ -21,13 +21,24 @@ Page = {
 		BigBang.contractUniverse();
 		$('a').removeClass('dark');
 		$('#logodark').removeClass('visible');
+		$('.slide').removeClass('visible', function() {
+			alert('hidden');
+		});
 	},
 }
 
 $(document).ready(function() {
 	
-	$('a').click(function(e) {
+	$('#about_link').click(function(e) {
 		Page.linkClicked(e);
+		$('#about_slide').show(function() {
+			$(this).addClass('visible');
+		});
+	});
+	
+	$('#portfolio_link').click(function(e) {
+		Page.linkClicked(e);
+		$('#portfolio_slide').addClass('visible');
 	});
 	
 	$('#logodark').click(function() {
