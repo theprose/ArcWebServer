@@ -21,9 +21,7 @@ Page = {
 		BigBang.contractUniverse();
 		$('a').removeClass('dark');
 		$('#logodark').removeClass('visible');
-		$('.slide').removeClass('visible', function() {
-			alert('hidden');
-		});
+		$('.slide').removeClass('visible');
 	},
 }
 
@@ -38,7 +36,32 @@ $(document).ready(function() {
 	
 	$('#portfolio_link').click(function(e) {
 		Page.linkClicked(e);
-		$('#portfolio_slide').addClass('visible');
+		$('#portfolio_slide').show(function() {
+			$(this).addClass('visible');
+			$('#theater').show();
+		});
+	});
+	
+	$('.portfolio_link').hover(function() {
+		var project = $(this).attr('project');
+		$('#'+project+'_grayscale').addClass('partial');
+		$('#portfolio_title, .portfolio_link').addClass('obscured');
+		$(this).removeClass('obscured');
+	}, function() {
+		var project = $(this).attr('project');
+		$('#'+project+'_grayscale').removeClass('partial');
+		$('#portfolio_title, .portfolio_link').removeClass('obscured');
+	});
+	
+	$('.portfolio_link').click(function() {
+		var project = $(this).attr('project');
+		$('#'+project+'_color').addClass('visible');
+		$('#portfolio_title, .portfolio_link').addClass('hidden');
+		$(this).removeClass('hidden');
+		$(this).addClass('title');
+		$('#'+project+'_info').show(function() {
+			$(this).addClass('visible');
+		});
 	});
 	
 	$('#logodark').click(function() {
@@ -48,5 +71,5 @@ $(document).ready(function() {
 	
 	setTimeout(function() {
 		Page.bigBang();
-	}, 5000);
+	}, 500);
 });
