@@ -48,9 +48,9 @@ $(document).ready(function() {
 		$('#portfolio_title, .portfolio_link').addClass('obscured');
 		$(this).removeClass('obscured');
 	}, function() {
-		var project = $(this).attr('project');
-		$('#'+project+'_grayscale').removeClass('partial');
-		$('#portfolio_title, .portfolio_link').removeClass('obscured');
+		//var project = $(this).attr('project');
+		//$('#'+project+'_grayscale').removeClass('partial');
+		//$('#portfolio_title, .portfolio_link').removeClass('obscured');
 	});
 	
 	$('.portfolio_link').click(function() {
