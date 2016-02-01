@@ -34,6 +34,30 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
+  },
+  
+  '/about': {
+    view: 'homepage'
+  },
+  
+  '/portfolio': {
+    view: 'homepage'
+  },
+  
+  '/team': {
+    view: 'homepage'
+  },
+  
+  '/portfolio/prose': {
+    view: 'homepage'
+  },
+  
+  '/portfolio/taggle': {
+    view: 'homepage'
+  },
+  
+  '/portfolio/note': {
+    view: 'homepage'
   }
 
   /***************************************************************************

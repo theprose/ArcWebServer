@@ -1,8 +1,11 @@
 Page = {
+	contractDuration: 3000,
 	
 	//expand and contract the universe when link is clicked
-	linkClicked:function(e) {
+	linkClicked:function(e, button) {
 		e.preventDefault();
+		$('.navbuttons a').removeClass('selected');
+		$(button).addClass('selected');
 		Page.expandUniverse();
 	},
 	
@@ -19,13 +22,55 @@ Page = {
 	contractUniverse: function() {
 		BigBang.contractUniverse();
 		$('#nav').removeClass('dark');
-		if(AboutPage.isVisible) AboutPage.hidePage();
-		if(PortfolioPage.isVisible) PortfolioPage.hidePage();
-		if(TeamPage.isVisible) TeamPage.hidePage();
+		$('.slide').addClass('slowfade');
+		$('.navbuttons a').removeClass('selected');
+		if(AboutPage.isVisible) AboutPage.hidePage(true);
+		if(PortfolioPage.isVisible) PortfolioPage.hidePage(true);
+		if(TeamPage.isVisible) TeamPage.hidePage(true);		
+	},
+	
+	hideSlide: function(slide, slow, callback) {
+		$(slide).removeClass('visible');
+		if(slow) {
+			$(slide).delay(Page.contractDuration).fadeOut(0, function() {
+				$(this).removeClass('slowfade');
+				if(callback) callback();
+			});
+		} else {
+			$(slide).delay(400).fadeOut(0, function() {
+				$(this).removeClass('slowfade');
+				if(callback) callback();
+			});
+		}
+	},
+	
+	switchPage: function(page) {
+		if(page.isVisible) return;
+		
+		if(PortfolioPage.isVisible) { 
+			PortfolioPage.hidePage(false, function() {
+				page.showPage();
+			});
+		} else if(TeamPage.isVisible) { 
+			TeamPage.hidePage(false, function() {
+				page.showPage();
+			});
+		} else if(AboutPage.isVisible) {
+			AboutPage.hidePage(false, function() {
+				page.showPage();
+			});
+		} else { 
+			page.showPage();
+		}
 	},
 	
 	resize: function() {
 		//var wh = $(window).height();
+		if($(window).width() < 550) {
+			if(!$('#nav').hasClass('mobile')) $('#nav').addClass('mobile');
+		} else if($('#nav').hasClass('mobile')) {
+			$('#nav').removeClass('mobile');
+		}
 		/*
 $('.slide').each(function() {
 			var offset = Math.max(60, Math.max(0, wh - 600) / 2);
@@ -38,40 +83,28 @@ $('.slide').each(function() {
 $(document).ready(function() {
 	
 	$('#about_link').click(function(e) {
-		Page.linkClicked(e);
-		if(PortfolioPage.isVisible) PortfolioPage.hidePage();
-		if(TeamPage.isVisible) TeamPage.hidePage();
-		
-		AboutPage.showPage();		
+		Page.linkClicked(e, this);
+		Page.switchPage(AboutPage);		
 	});
 	
 	$('#portfolio_link').click(function(e) {
-		Page.linkClicked(e);
-		if(AboutPage.isVisible) AboutPage.hidePage();
-		if(TeamPage.isVisible) TeamPage.hidePage();
-		
+		Page.linkClicked(e, this);
+
 		if(PortfolioPage.selectedProject) { 
 			PortfolioPage.hideProject();
 			return;
 		}
 		
-		PortfolioPage.showPage();
+		Page.switchPage(PortfolioPage);
 	});
 	
 	$('#team_link').click(function(e) {
-		Page.linkClicked(e);
-		if(PortfolioPage.isVisible) PortfolioPage.hidePage();
-		if(AboutPage.isVisible) AboutPage.hidePage();
-		
-		TeamPage.showPage();	
+		Page.linkClicked(e, this);
+		Page.switchPage(TeamPage);	
 	});
 	
 	$('.portfolio_link').hover(function() {
 		PortfolioPage.previewProject(this);
-	}, function() {
-		//var project = $(this).attr('project');
-		//$('#'+project+'_grayscale').removeClass('partial');
-		//$('#portfolio_title, .portfolio_link').removeClass('obscured');
 	});
 	
 	$('.portfolio_link').click(function(e) {
@@ -88,7 +121,6 @@ $(document).ready(function() {
 		Page.resize();
 	});
 	
-	
 	setTimeout(function() {
 		Page.bigBang();
 	}, 1000);
@@ -104,9 +136,8 @@ AboutPage = {
 		this.isVisible = true;
 	},
 	
-	hidePage: function() {
-		$('#about_slide').removeClass('visible');
-		$('#about_slide').delay(3000).hide();
+	hidePage: function(slow, callback) {
+		Page.hideSlide('#about_slide', slow, callback);
 		this.isVisible = false;
 	}
 };
@@ -151,17 +182,17 @@ PortfolioPage = {
 	
 	hideProject: function() {
 		$('#portfolio_title, .portfolio_link').removeClass('hidden').removeClass('title').removeClass('obscured');
-		$('.project_info').removeClass('visible').delay(1000).hide();
+		$('.project_info').removeClass('visible').delay(1000).fadeOut(10, function() {
+			$(this).removeClass('slowfade');
+		});
 		$('.banner').removeClass('visible').removeClass('partial');
 		this.selectedProject = false;
 	},
 	
-	hidePage: function() {
+	hidePage: function(slow, callback) {
 		PortfolioPage.hideProject();
-		$('#portfolio_slide').removeClass('visible');
-		$('#portfolio_slide').delay(3000).hide();
+		Page.hideSlide('#portfolio_slide', slow, callback);
 		this.isVisible = false;
-		//$('#theater').hide();
 	}
 };
 
@@ -178,9 +209,8 @@ TeamPage = {
 		this.isVisible = true;
 	},
 	
-	hidePage: function() {
-		$('#team_slide').removeClass('visible');
-		$('#team_slide').delay(3000).hide();
+	hidePage: function(slow, callback) {
+		Page.hideSlide('#team_slide', slow, callback);
 		this.isVisible = false;
 	}
 }

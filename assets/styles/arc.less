@@ -161,6 +161,17 @@ canvas {
 		}
 	}
 	
+	&.mobile {
+		
+		.navbuttons {
+			max-width: 100px;
+			
+			a {
+				padding-top: 15px;
+			}
+		}
+	}
+	
 	img {
 		position: absolute;
 		top: 15px;
@@ -170,10 +181,15 @@ canvas {
 		width: auto;
 	}
 	
+	.navbuttons {
+		position: relative;
+		float: right;
+	}
+	
 	a { 
 		position: relative;
 		display: block;
-		float: right;	
+		float: left;	
 		color: white;
 		text-decoration: none;
 		padding-top: 44px;
@@ -181,6 +197,15 @@ canvas {
 		font-family: @fontGothamBook;
 		font-size: 15px;
 		text-transform: uppercase;
+		.transition (0.2s);
+		
+		&:hover {
+			opacity: 0.8;
+		}
+		
+		&.selected {
+			color: @colorArcBlue;
+		}
 		
 		&.morepadding {
 			padding-right: 25px;
@@ -272,13 +297,16 @@ canvas {
 .content {
 	position: relative;
 	z-index: 2;
-	margin-top: 60px;
+	margin-top: 100px;
 	overflow: visible;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 60px;
 	
 	.slide {
 		max-width: 700px;
 		margin: auto;
-		.transition (3.0s);
+		.transition (0.4s);
 		opacity: 0;
 		visibility: hidden;
 		display:none;
@@ -288,6 +316,10 @@ canvas {
 			opacity: 1.0;
 			visibility: visible;
 		}		
+		
+		&.slowfade {
+			.transition (3.0s);
+		}
 		
 		h1 {
 			font-family: @fontGothamBook;
