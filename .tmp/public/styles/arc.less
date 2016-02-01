@@ -105,6 +105,14 @@
   transition-timing-function: @style;
 }
 
+.rotate(@deg) {
+	-webkit-transform: rotate(@deg);
+	-moz-transform: rotate(@deg);
+	-ms-transform: rotate(@deg);
+	-o-transform: rotate(@deg);
+	transform: rotate(@deg);
+}
+
 body {
 	background: black;
 	height: 100%;
@@ -238,12 +246,12 @@ canvas {
 		}
 		
 		&.taggle_color {
-			background-image: url('../images/aurora_color.jpg');
+			background-image: url('../images/suit2_grayscale.jpg');
 			z-index: 1;
 		}
 		
 		&.taggle_grayscale {
-			background-image: url('../images/aurora_grayscale.jpg');
+			background-image: url('../images/suit2_grayscale.jpg');
 			z-index: 2;
 		}
 		
@@ -264,8 +272,8 @@ canvas {
 .content {
 	position: relative;
 	z-index: 2;
-	margin-top: 100px;
-	overflow: auto;
+	margin-top: 60px;
+	overflow: visible;
 	
 	.slide {
 		max-width: 700px;
@@ -279,7 +287,7 @@ canvas {
 			.transition (2.0s);
 			opacity: 1.0;
 			visibility: visible;
-		}
+		}		
 		
 		h1 {
 			font-family: @fontGothamBook;
@@ -297,7 +305,29 @@ canvas {
 			
 			&.obscured {
 				.transition (1.0s);
-				opacity: 0;
+				opacity: 0.05;
+			}
+			
+			&.banner_text {
+				position: fixed;
+				font-family: @fontGothamBook;
+				font-size: 120px;
+				bottom:0px;
+				left: 15px;
+				color: black;
+				font-weight: bold;
+				z-index: 3;
+				opacity: 0.1;
+				margin-top: 0px;
+				margin-bottom: 0px;
+				
+				&.obscured {
+					opacity: 0.05;
+				}
+				
+				&.hidden {
+					opacity: 0;	
+				}
 			}
 		}
 		
@@ -363,6 +393,7 @@ canvas {
 			opacity: 0;
 			visibility: hidden;
 			.transition (0.6s);
+			overflow: auto;
 			
 			&.visible {
 				opacity: 1;
@@ -391,7 +422,8 @@ canvas {
 				margin: auto;
 				margin-top: 60px;
 				opacity: 0;
-				width: 200px;
+				width: 100px;
+				overflow: auto;
 				
 				&.large {
 					width: 300px;
