@@ -1,3 +1,5 @@
+@colorArcBlue: #00aced;
+
 //TODO: add font stacks where needed
 @fontGaramondRegular: "Garamond-Regular";
 @fontGaramondItalic: "Garamond-Italic";
@@ -225,6 +227,26 @@ canvas {
 			z-index: 2;
 		}
 		
+		&.note_color {
+			background-image: url('../images/aurora_color.jpg');
+			z-index: 1;
+		}
+		
+		&.note_grayscale {
+			background-image: url('../images/aurora_grayscale.jpg');
+			z-index: 2;
+		}
+		
+		&.taggle_color {
+			background-image: url('../images/aurora_color.jpg');
+			z-index: 1;
+		}
+		
+		&.taggle_grayscale {
+			background-image: url('../images/aurora_grayscale.jpg');
+			z-index: 2;
+		}
+		
 		&.visible {
 			visibility: visible;
 			opacity: 1.0;
@@ -267,36 +289,40 @@ canvas {
 			.transition (0.2s);
 			
 			&.hidden {
-				.transition (1.0s);
+				.transition (1.6s);
 				opacity: 0;
 				visibility: hidden;
-				height: 0px;
 				font-size: 0px;
 			}
 			
 			&.obscured {
-				.transition (2.0s);
+				.transition (1.0s);
 				opacity: 0;
 			}
 		}
 		
-		h2 {
+		.portfolio_link {
 			cursor: pointer;
 			font-size: 42px;
 			color: black;
 			text-align: center;
+			margin: auto;
 			margin-bottom: 30px;
 			font-weight: normal;
 			opacity: 0.4;
 			.transition (0.2s);
 			visibility: visible;
+			display: block;
+			text-decoration: none;
+			text-align: center;
+			max-width: 150px;
 			
 			&:hover {
 				opacity: 1.0;
 			}
 			
 			&.obscured {
-				.transition (2.0s);
+				.transition (1.0s);
 				opacity: 0.1;
 			}
 			
@@ -306,14 +332,13 @@ canvas {
 				color: white;
 				margin-top: 0px !important;
 				opacity: 1.0;
-				text-shadow: 2px 2px #333;
+				//text-shadow: 2px 2px #333;
 			}
 			
 			&.hidden {
-				.transition (1.0s);
+				.transition (1.6s);
 				opacity: 0;
 				visibility: hidden;
-				height: 0px;
 				font-size: 0px;
 				margin-bottom: 0px;
 			}
@@ -344,29 +369,40 @@ canvas {
 				visibility: visible;
 				
 				p, .link_container {
-					.transition-delay (1.0s);
+					.transition-delay (1.6s);
 					opacity: 1;
-					font-size: 21px;
-					text-shadow: 2px 2px #333;
+					font-size: 19px;
+					text-transform: uppercase;
+					//text-shadow: 2px 2px #333;
 				}
 			}
 			
 			p {
-				.transition (0.4s);
+				.transition (1.0s);
 				color: white;
-				font-size: 0px;
+				font-size: 19px;
+				//font-size: 0px;
 				opacity: 0;
 			}
 			
 			.link_container {
-				.transition (0.4s);
+				.transition (1.0s);
 				position: relative;
 				margin: auto;
 				margin-top: 60px;
 				opacity: 0;
-				width: 300px;
+				width: 200px;
+				
+				&.large {
+					width: 300px;
+				}
+				
+				&.medium {
+					width: 200px;
+				}
 				
 				.link {
+					.transition (0.2s);
 					position: relative;
 					width: 100px;
 					float: left;
@@ -379,6 +415,10 @@ canvas {
 					font-size: 15px;
 					text-decoration: none;
 					display: block;
+					
+					&:hover {
+						opacity: 0.8;
+					}
 					
 					&:before {
 						content: ' ';
@@ -418,6 +458,16 @@ canvas {
 			font-size: 15px;
 			color: black;
 			text-align: center;
+			
+			a {
+				color: @colorArcBlue;
+				text-decoration: none;
+				.transition (0.2s);
+				
+				&:hover {
+					opacity: 0.8;
+				}
+			}
 		}
 	}
 }

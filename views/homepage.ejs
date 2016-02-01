@@ -4,7 +4,7 @@
 <div id="nav" class="navigation">
 	<img id="logolight" src="/images/arlogo_white.svg"/>
 	<img id="logodark" src="/images/arlogo_black.svg"/>
-	<a href="/team">Team</a>
+	<a id="team_link" href="/team">Team</a>
 	<a id="portfolio_link" href="/portfolio" class="morepadding">Portfolio</a>
 	<a id="about_link" href="/about" class="morepadding">About</a>
 </div>
@@ -12,6 +12,10 @@
 <div id="theater" class="theater">
 	<div id="prose_color" class="banner prose_color"></div>
 	<div id="prose_grayscale" class="banner prose_grayscale"></div>
+	<div id="note_color" class="banner note_color"></div>
+	<div id="note_grayscale" class="banner note_grayscale"></div>
+	<div id="taggle_color" class="banner taggle_color"></div>
+	<div id="taggle_grayscale" class="banner taggle_grayscale"></div>
 </div>
 
 <div class="content">
@@ -28,18 +32,38 @@
 	
 	<div id="portfolio_slide" class="slide">
 		<h1 id="portfolio_title">OUR PORTFOLIO</h1>
-		<h2 class="portfolio_link prose" project="prose">Prose.</h2>			
-		<h2 class="portfolio_link taggle" project="taggle">Taggle</h2>
-		<h2 class="portfolio_link note" project="prose">Note</h2>
+		<a href="/portfolio/prose" class="portfolio_link prose" project="prose">Prose.</a>			
+		<a href="/portfolio/taggle" class="portfolio_link taggle" project="taggle">Taggle</a>
+		<a href="/portfolio/note" class="portfolio_link note" project="note">Note</a>
 		
 		<div id="prose_info" class="project_info">
-			<p>A place for readers and writers.</p>
-			<div class="link_container">
-				<a href="#" class="link website">Website</a>
-				<a href="#" class="link apple">iOS</a>
-				<a href="#" class="link android">Android</a>
+			<p>A place for readers and writers.<br />Deployed.</p>
+			<div class="link_container large">
+				<a href="https://theprose.com" class="link website" target="_prose">Website</a>
+				<a href="https://itunes.apple.com/us/app/prose./id911216930?mt=8" class="link apple" target="_prose">iOS</a>
+				<a href="https://play.google.com/store/apps/details?id=arcreactor.com.prose&hl=en" class="link android" target="_prose">Android</a>
 			</div>
 		</div>
+		
+		<div id="taggle_info" class="project_info">
+			<p>Reviews. For the people, by the people.<br />In Development.</p>
+			<div class="link_container">
+				<a href="http://taggle.com" class="link website" target="_taggle">Website</a>
+			</div>
+		</div>
+		
+		<div id="note_info" class="project_info">
+			<p>Make your moments musical.<br />App Prototype.</p>
+			<div class="link_container medium">
+				<a href="http://thenoteapp.com" class="link website" target="_note">Website</a>
+				<a href="https://itunes.apple.com/us/app/note-messenger/id816000314?ls=1&mt=8" class="link apple" target="_note">iOS</a>
+			</div>
+		</div>
+	</div>
+	
+	<div id="team_slide" class="slide">
+		<h1>OUR TEAM</h1>
+		<p>Our team is a mix of software engineers, designers, growth hackers and industry leaders.<br /><br />We prefer discretion.<br /><br /><a id="email"></a></p>
 	</div>
 		
 </div>
