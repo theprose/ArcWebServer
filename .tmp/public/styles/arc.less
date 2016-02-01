@@ -140,6 +140,17 @@ canvas {
 	height: 60px;
 	z-index: 2;
 	
+	&.dark {
+		a {
+			color: black;
+		}
+		
+		#logodark {
+			opacity: 1.0;
+			visibility: visible;
+		}
+	}
+	
 	img {
 		position: absolute;
 		top: 15px;
@@ -237,7 +248,7 @@ canvas {
 	.slide {
 		max-width: 700px;
 		margin: auto;
-		.transition (4.0s);
+		.transition (3.0s);
 		opacity: 0;
 		visibility: hidden;
 		display:none;

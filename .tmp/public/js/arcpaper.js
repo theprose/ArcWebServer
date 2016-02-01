@@ -72,7 +72,6 @@ BigBang = {
 	cleanupAnimations: function() {
 		BigBang.completionCount++;
 
-		console.log(BigBang.completionCount);
 		if(BigBang.completionCount == BigBang.bodies.length) { 
 			if(BigBang.isExpanding) { 
 				BigBang.isFrozen = true;

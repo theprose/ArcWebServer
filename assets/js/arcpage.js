@@ -13,15 +13,14 @@ Page = {
 	
 	expandUniverse:function() {
 		BigBang.expandUniverse();
-		$('a').addClass('dark');
-		$('#logodark').addClass('visible');
+		$('#nav').addClass('dark');
 	},
 	
 	contractUniverse:function() {
 		BigBang.contractUniverse();
-		$('a').removeClass('dark');
-		$('#logodark').removeClass('visible');
-		$('.slide').removeClass('visible');
+		$('#nav').removeClass('dark');
+		if(AboutPage.isVisible) AboutPage.hidePage();
+		if(PortfolioPage.isVisible) PortfolioPage.hidePage();
 	},
 }
 
@@ -29,24 +28,24 @@ $(document).ready(function() {
 	
 	$('#about_link').click(function(e) {
 		Page.linkClicked(e);
-		$('#about_slide').show(function() {
-			$(this).addClass('visible');
-		});
+		if(PortfolioPage.isVisible) PortfolioPage.hidePage();
+		AboutPage.showPage();		
 	});
 	
 	$('#portfolio_link').click(function(e) {
 		Page.linkClicked(e);
-		$('#portfolio_slide').show(function() {
-			$(this).addClass('visible');
-			$('#theater').show();
-		});
+		if(AboutPage.isVisible) AboutPage.hidePage();
+		
+		if(PortfolioPage.selectedProject) { 
+			PortfolioPage.hideProject();
+			return;
+		}
+		
+		PortfolioPage.showPage();
 	});
 	
 	$('.portfolio_link').hover(function() {
-		var project = $(this).attr('project');
-		$('#'+project+'_grayscale').addClass('partial');
-		$('#portfolio_title, .portfolio_link').addClass('obscured');
-		$(this).removeClass('obscured');
+		PortfolioPage.previewProject(this);
 	}, function() {
 		//var project = $(this).attr('project');
 		//$('#'+project+'_grayscale').removeClass('partial');
@@ -54,17 +53,10 @@ $(document).ready(function() {
 	});
 	
 	$('.portfolio_link').click(function() {
-		var project = $(this).attr('project');
-		$('#'+project+'_color').addClass('visible');
-		$('#portfolio_title, .portfolio_link').addClass('hidden');
-		$(this).removeClass('hidden');
-		$(this).addClass('title');
-		$('#'+project+'_info').show(function() {
-			$(this).addClass('visible');
-		});
+		PortfolioPage.showProject(this);
 	});
 	
-	$('#logodark').click(function() {
+	$('#logodark, #logolight').click(function() {
 		Page.contractUniverse();
 	});
 	
@@ -73,3 +65,68 @@ $(document).ready(function() {
 		Page.bigBang();
 	}, 500);
 });
+
+AboutPage = {
+	isVisible: false,
+	
+	showPage: function() {
+		$('#about_slide').show(function() {
+			$(this).addClass('visible');
+		});
+		AboutPage.isVisible = true;
+	},
+	
+	hidePage: function() {
+		$('#about_slide').removeClass('visible');
+		$('#about_slide').delay(3000).hide();
+	}
+};
+
+PortfolioPage = {
+	selectedProject: false,
+	isVisible: false,
+	
+	showPage: function() {
+		$('#portfolio_slide').show(function() {
+			$(this).addClass('visible');
+			$('#theater').show();
+		});
+		PortfolioPage.isVisible = true;
+	},
+	
+	previewProject:function(button) {
+		var project = $(button).attr('project');
+		$('#'+project+'_grayscale').addClass('partial');
+		$('#portfolio_title, .portfolio_link').addClass('obscured');
+		$(button).removeClass('obscured');
+	},
+	
+	showProject: function(button) {
+		if(PortfolioPage.selectedProject == project) return;
+		
+		var project = $(button).attr('project');
+		$('#'+project+'_color').addClass('visible');
+		$('#portfolio_title, .portfolio_link').addClass('hidden');
+		$(button).removeClass('hidden');
+		$(button).addClass('title');
+		$('#'+project+'_info').show(function() {
+			$(this).addClass('visible');
+		});
+		$('#nav').removeClass('dark');
+		PortfolioPage.selectedProject = project;
+	},
+	
+	hideProject: function() {
+		$('#portfolio_title, .portfolio_link').removeClass('hidden').removeClass('title');
+		$('.project_info').removeClass('visible');
+		$('.banner').removeClass('visible').removeClass('partial');
+		PortfolioPage.selectedProject = false;
+	},
+	
+	hidePage: function() {
+		PortfolioPage.hideProject();
+		$('#portfolio_slide').removeClass('visible');
+		$('#portfolio_slide').delay(3000).hide();
+		//$('#theater').hide();
+	}
+};

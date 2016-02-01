@@ -79,6 +79,13 @@ canvas {
   height: 60px;
   z-index: 2;
 }
+.navigation.dark a {
+  color: black;
+}
+.navigation.dark #logodark {
+  opacity: 1.0;
+  visibility: visible;
+}
 .navigation img {
   position: absolute;
   top: 15px;
@@ -177,10 +184,10 @@ canvas {
 .content .slide {
   max-width: 700px;
   margin: auto;
-  -webkit-transition: 4s;
-  -moz-transition: 4s;
-  -ms-transition: 4s;
-  -o-transition: 4s;
+  -webkit-transition: 3s;
+  -moz-transition: 3s;
+  -ms-transition: 3s;
+  -o-transition: 3s;
   opacity: 0;
   visibility: hidden;
   display: none;
